@@ -20,4 +20,8 @@ class Grid
     puts "\tResetting..."
     @grid = Array.new(3) { Array.new(3, ' ') }
   end
+
+  def player_move(mark, row, col)
+    @grid[row][col] = mark
+  end
 end
