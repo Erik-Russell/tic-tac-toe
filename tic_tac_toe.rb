@@ -17,7 +17,7 @@ index_map = map_indexes
 # Map grid elements to variable names using a hash
 grid_hash = {}
 grid.flatten.map.with_index do |_, index|
-  grid_hash[variable_names[index]] = ''
+  grid_hash[variable_names[index]] = ' '
 end
 
 # EXAMPLE FILLER ----------------------
