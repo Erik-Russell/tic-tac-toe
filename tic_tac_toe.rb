@@ -9,9 +9,9 @@ game_board = Grid.new
 game_board.display
 
 # EXAMPLE FILLER ----------------------
-game_board.grid[1][1] = 'X'
+game_board.player_move('X', 1, 1)
 game_board.player_move('O', 0, 0)
-game_board.grid[0][1] = 'X'
+game_board.player_move('X', 0, 1)
 
 # display board with moves
 game_board.display
