@@ -1,0 +1,64 @@
+x goes first
+
+repeat 
+    'x' chooses 1 - 9
+
+    display board
+
+    'o' chooses 1 - 9
+
+    display board
+
+~> until all spaces filled or three in a row
+
+
+
+# Create an array with the variable names for each element in the grid
+variable_names = %w[a1 a2 a3 b1 b2 b3 c1 c2 c3]
+
+# Initialize the 3x3 grid with blank strings
+grid = Array.new(3) { Array.new(3, "") }
+
+# Create a mapping of variable names to grid indices
+index_mapping = {
+  'a1' => [0, 0], 'a2' => [0, 1], 'a3' => [0, 2],
+  'b1' => [1, 0], 'b2' => [1, 1], 'b3' => [1, 2],
+  'c1' => [2, 0], 'c2' => [2, 1], 'c3' => [2, 2]
+}
+
+# Initialize the hash to store variable names and grid elements
+grid_hash = {}
+
+# Map the grid elements to variable names using a hash
+grid.flatten.map.with_index do |_, index|
+  grid_hash[variable_names[index]] = ""
+end
+
+# Function to update the grid array using the hash
+def update_grid(grid, grid_hash, index_mapping)
+  grid_hash.each do |key, value|
+    row, col = index_mapping[key]
+    grid[row][col] = value
+  end
+end
+
+# Example usage: Update the hash and then the array
+grid_hash['a1'] = 'X'
+grid_hash['b2'] = 'O'
+grid_hash['c3'] = 'X'
+
+# Update the grid array based on the changes made to the hash
+update_grid(grid, grid_hash, index_mapping)
+
+# Display the updated grid
+grid.each do |row|
+  puts row.join(' | ')
+end
+
+
+end of every turn, after fifth turn, check if 3-in-a-row
+
+process of marking a spot
+    - x OR o
+    - spot 1 - 9
+    - change blank string ' ' to 'x' OR 'o'
