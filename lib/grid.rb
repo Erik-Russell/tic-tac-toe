@@ -2,27 +2,34 @@
 
 # Grid - creates, updates and resets a 3x3 grid for playing a game such as Tic-Tac-Toe
 class Grid
-  attr_accessor :grid
+  attr_accessor :board
 
   def initialize
-    @grid = Array.new(3) { Array.new(3, ' ') }
+    @board = Array.new(3) { Array.new(3, ' ') }
   end
 
   def display
     puts "\n"
-    @grid.each_with_index do |row, index|
+    @board.each_with_index do |row, index|
       puts row.join(' | ')
-      puts '---------' unless index == @grid.size - 1
+      puts '-' * 9 unless index == @board.size - 1
     end
     puts "\n"
   end
 
   def reset
     puts "\tResetting..."
-    @grid = Array.new(3) { Array.new(3, ' ') }
+    @board = Array.new(3) { Array.new(3, ' ') }
   end
 
   def player_move(mark, row, col)
-    @grid[row][col] = mark
+    return false unless @board[row][col] == ' '
+
+    @board[row][col] = mark
+    true
+  end
+
+  def full?
+    @board.flatten.none? { |cell| cell == ' ' }
   end
 end

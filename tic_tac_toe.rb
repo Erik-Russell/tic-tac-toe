@@ -1,22 +1,19 @@
 # frozen_string_literal: true
 
 require_relative 'lib/grid'
+require_relative 'lib/game'
 
 # new game
-game_board = Grid.new
+game = Game.new
 
-# display new board
-game_board.display
+game_over = false
 
-# EXAMPLE FILLER ----------------------
-game_board.player_move('X', 1, 1)
-game_board.player_move('O', 0, 0)
-game_board.player_move('X', 0, 1)
+until game_over
+  # get input from player
+  # example:
+  puts 'Enter row and column (e.g., 0 0 for top-left):'
+  row, col = gets.chomp.split.map(&:to_i)
 
-# display board with moves
-game_board.display
-
-# new game
-game_board.reset
-
-game_board.display
+  # play turn and check if game over
+  game_over = game.play_turn(row, col)
+end
