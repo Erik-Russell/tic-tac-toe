@@ -9,6 +9,8 @@ class Game
     @current_player = 'X' # this or initialize logic for players
   end
 
+  attr_reader :current_player
+
   def play_turn(row, col)
     if @grid.player_move(@current_player, row, col)
       @grid.display
