@@ -9,6 +9,7 @@ class Grid
   end
 
   def display
+    puts "\n"
     @grid.each_with_index do |row, index|
       puts row.join(' | ')
       puts '---------' unless index == @grid.size - 1
