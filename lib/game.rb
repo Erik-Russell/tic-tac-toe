@@ -40,7 +40,7 @@ class Game
     row.between?(1, 3) && col.between?(1, 3)
   end
 
-  def play_turn(row, col)
+  def play_turn(row, col) # rubocop:disable Metrics/MethodLength
     if @grid.player_move(@current_player, row, col)
       @grid.display
       if check_winner
@@ -80,7 +80,7 @@ class Game
     end
   end
 
-  def check_diagonals
+  def check_diagonals # rubocop:disable Metrics/AbcSize
     left_to_right = [@grid.board[0][0], @grid.board[1][1], @grid.board[2][2]]
     right_to_left = [@grid.board[0][2], @grid.board[1][1], @grid.board[2][0]]
 

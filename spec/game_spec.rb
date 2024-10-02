@@ -2,7 +2,7 @@
 
 require_relative '../lib/game'
 
-describe Game do
+describe Game do # rubocop:disable Metrics/BlockLength
   subject(:game) { described_class.new }
 
   describe '#initialize' do
