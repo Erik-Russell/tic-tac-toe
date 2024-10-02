@@ -4,12 +4,41 @@ require_relative 'grid'
 
 # Game - manage turns, check for wins, handle overall game flow
 class Game
+  attr_reader :current_player
+
   def initialize
     @grid = Grid.new
     @current_player = 'X' # this or initialize logic for players
   end
 
-  attr_reader :current_player
+  def start_game
+    game_over = false
+
+    until game_over
+      puts "\t--- #{@current_player}'s turn ---"
+      row, col = player_input
+
+      game_over = play_turn(row, col)
+    end
+  end
+
+  def player_input
+    loop do
+      puts 'Enter row and column (e.g., 1 1 for top-left):'
+      input = gets.chomp.split
+
+      return input.map(&:to_i).map { |i| i - 1 } if valid_input?(input)
+
+      puts 'Invalid input! Please enter two numbers (1 - 3) separated by a space'
+    end
+  end
+
+  def valid_input?(input)
+    return false if input.length != 2 || !input.all? { |i| i.match?(/^\d+$/) }
+
+    row, col = input.map(&:to_i)
+    row.between?(1, 3) && col.between?(1, 3)
+  end
 
   def play_turn(row, col)
     if @grid.player_move(@current_player, row, col)
